@@ -10,7 +10,7 @@ edad_independencia = st.text_input("Edad al independizarse:", key="edad_independ
 tiene_hijos = st.radio("¿Tienes hijos?", ["Sí", "No"], index=1)
 
 if tiene_hijos == "Sí":
-    num_hijos = st.number_input("Número de hijos:", 1, 10, 1)
+    num_hijos = st.number_input("Número de hijos:", 1, 3, 1)
 
     datos_hijos = []
     for i in range(num_hijos):

@@ -6,8 +6,8 @@ import time
 theme = "config.toml"
 
 st.set_page_config(page_title='Estudio Jovenes ', layout='wide',     page_icon="🏠")
-
-st.image('ufv.png')
+ancho = 720
+st.image('ufv.png', width=ancho)
 
 
 

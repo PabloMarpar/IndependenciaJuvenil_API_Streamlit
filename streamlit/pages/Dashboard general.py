@@ -5,6 +5,8 @@ matplotlib.use('Agg')
 import requests
 import pandas as pd
 import streamlit as st
+import seaborn as sns
+
 
 url = "http://fastapi:8000/datos_limpios"  # Ajusta el puerto según tu configuración de Docker
 st.header("Gráficos generales")
@@ -25,7 +27,14 @@ try:
         print(f'Solicitud no exitosa. Código de estado: {response.status_code}')
 
     print(response.json())
-    # Crear cuatro gráficos
+    # Crear gráficos
+    plt.style.use('seaborn-dark')
+    plt.rcParams['figure.facecolor'] = '#0c1215'  # Fondo personalizado
+    plt.rcParams['axes.facecolor'] = '#0c1215'
+    plt.rcParams['text.color'] = 'white'
+    plt.rcParams['axes.labelcolor'] = 'white'
+    plt.rcParams['xtick.color'] = 'white'
+    plt.rcParams['ytick.color'] = 'white'
     fig, axs = plt.subplots(2, 3, figsize=(20, 10))
     fig.suptitle('Dashboard 1 -- Visualización inicial de los datos', fontsize=18)
 
