@@ -10,7 +10,7 @@ services:
       - deploy_network
     container_name: fastapi
     volumes:
-      - mis_datos:/var/lib/docker/volumes/aa-streamlit-fastapi_mis_datos/_data
+      - mis_datos:/var/lib/docker/volumes/practica_ufv_mis_datos/_data
   streamlit:
     build: streamlit/
     depends_on:
@@ -21,7 +21,7 @@ services:
       - deploy_network
     container_name: streamlit
     volumes:
-      - mis_datos:/var/lib/docker/volumes/aa-streamlit-fastapi_mis_datos/_data
+      - mis_datos:/var/lib/docker/volumes/practica_ufv_mis_datos/_data
 networks:
   deploy_network:
     driver: bridge
