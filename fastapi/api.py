@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,HTTPException
 from fastapi.responses import JSONResponse
 import pandas as pd
 import os
@@ -64,3 +64,26 @@ def get_datos_limpios():
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
 
+
+@app.post("/datos_limpios")
+async def limpiar_datos(datos: dict):
+    try:
+        # Datos de independencia
+        datos_independencia = datos.get("Independencia", {})
+        df_independencia = pd.DataFrame({
+            "Año": [int(datos_independencia.get("España", 0))],
+            "Edad al independizarse": [int(datos_independencia.get("Edad al independizarse", 0))]
+        })
+
+        # Datos de hijos
+        datos_hijos = datos.get("Hijos", [])
+        df_hijos = pd.DataFrame()
+        for i, item in enumerate(datos_hijos):
+            df_hijos[f"Año_{i + 1}º"] = [int(item.get(f"Año_{i + 1}º", 0))]
+            df_hijos[f"{i + 1}º"] = [int(item.get(f"{i + 1}º", 0))]
+
+        # Realiza la limpieza o manipulación de los DataFrames según tus necesidades
+
+        return {"mensaje": "Datos enviados correctamente"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error en la limpieza de datos: {str(e)}")
