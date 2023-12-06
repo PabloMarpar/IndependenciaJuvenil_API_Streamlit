@@ -81,9 +81,9 @@ async def limpiar_datos(datos: dict):
         for i, item in enumerate(datos_hijos):
             df_hijos[f"Año_{i + 1}º"] = [int(item.get(f"Año_{i + 1}º", 0))]
             df_hijos[f"{i + 1}º"] = [int(item.get(f"{i + 1}º", 0))]
-
         # Realiza la limpieza o manipulación de los DataFrames según tus necesidades
 
-        return {"mensaje": "Datos enviados correctamente"}
+
+        return {"Datos enviados correctamente"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error en la limpieza de datos: {str(e)}")

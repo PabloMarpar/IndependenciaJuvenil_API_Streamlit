@@ -1,6 +1,9 @@
 import streamlit as st
 import requests
-st.title("Formulario de Datos")
+
+# Inicializar la lista de datos si no existe
+if 'data_history' not in st.session_state:
+    st.session_state.data_history = []
 
 # Formulario para datos de independencia
 año_independencia = st.text_input("Año de independencia:", key="año_independencia")
@@ -34,16 +37,19 @@ if st.button("Enviar Datos"):
         {f"Año_{i + 1}º": item[f"Año_{i + 1}º"], f"{i + 1}º": item[f"{i + 1}º"]} for i, item in enumerate(datos_hijos)
     ]
 
-    # Crear un diccionario con todos los datos recopilados
-    datos = {
+    # Crear un diccionario con los datos actuales
+    datos_actual = {
         "Independencia": datos_independencia,
         "Hijos": datos_hijos_dict
     }
 
+    # Agregar los datos actuales al historial de sesiones
+    st.session_state.data_history.append(datos_actual)
 
-    # Enviar los datos a la API
-    url_api = "http://fastapi:8000/datos_limpios"
-    respuesta = requests.post(url_api, json=datos)
+    # Mensaje indicando que los datos se han enviado correctamente
+    st.success("Datos enviados correctamente.")
 
-    # Mostrar la respuesta de la API
-    st.success(f"Datos enviados correctamente. Respuesta de la API: {respuesta.text}")
+# Botón para mostrar u ocultar la tabla
+if st.button("Quiere ver los datos recopilados?"):
+    # Mostrar la información en una tabla
+    st.table(st.session_state.data_history)
