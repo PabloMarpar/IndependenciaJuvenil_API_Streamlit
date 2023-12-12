@@ -13,9 +13,6 @@ st.image('ufv.png', width=ancho)
 
 placeholder = st.empty()
 with placeholder:
-    #from PIL import Image
-    #image = Image.open('mired.png')
-    #placeholder.image(image, caption='MiRed semantic engine',use_column_width = 'always') 
     for seconds in range(5):
         placeholder.write(f"⏳ {seconds} Cargando sistema")
         time.sleep(1)
@@ -27,7 +24,7 @@ st.sidebar.success("Estás en la página de inicio, seleccione el primer dashboa
 
 mostrar_documentacion = st.button("Mostrar Documentación")
 
-# Mostrar el texto solo cuando se presiona el botón
+
 if mostrar_documentacion:
     st.markdown(
         """
