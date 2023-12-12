@@ -1,11 +1,20 @@
 import streamlit as st
 
+
+st.sidebar.success("Aquí puedes ayudarnos a recopilar datos, en este caso no es necesario que los datos sean reales ")
+st.sidebar.success( 'Sus datos están protegidos por la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales')
+st.sidebar.success('https://www.boe.es/eli/es/lo/2018/12/05/3/con ')
+
+
 if 'data_history' not in st.session_state:
     st.session_state.data_history = []
 
 def es_numero_entero(cadena):
-    return cadena.isdigit()
-
+    try:
+        int(cadena)
+        return True
+    except ValueError:
+        return False
 ### FORMULARIO INDEPENDENCIA
 año_independencia = st.text_input("Año de independencia:", key="año_independencia")
 edad_independencia = st.text_input("Edad al independizarse:", key="edad_independencia")
@@ -44,27 +53,33 @@ if tiene_hijos == "Sí":
 else:
     datos_hijos = []
 
+# Nueva validación antes de permitir enviar datos
+if es_numero_entero(año_independencia) and es_numero_entero(edad_independencia) and all(
+    es_numero_entero(item[f"Año_{i + 1}º"]) and es_numero_entero(item[f"{i + 1}º"]) for i, item in enumerate(datos_hijos)
+):
+    if st.button("Enviar Datos"):
+        datos_independencia = {
+            "España": año_independencia,
+            "Edad al independizarse": edad_independencia
+        }
+
+        datos_hijos_dict = [
+            {f"Año_{i + 1}º": item[f"Año_{i + 1}º"], f"{i + 1}º": item[f"{i + 1}º"]} for i, item in
+            enumerate(datos_hijos)
+        ]
+
+        datos_actual = {
+            "Independencia": datos_independencia,
+            "Hijos": datos_hijos_dict
+        }
+
+        st.session_state.data_history.append(datos_actual)
+
+        st.success("Datos enviados correctamente.")
+else:
+    st.warning("Por favor, asegúrate de ingresar valores numéricos válidos en todos los campos antes de enviar los datos.")
 
 
-if st.button("Enviar Datos"):
-
-    datos_independencia = {
-        "España": año_independencia,
-        "Edad al independizarse": edad_independencia
-    }
-
-    datos_hijos_dict = [
-        {f"Año_{i + 1}º": item[f"Año_{i + 1}º"], f"{i + 1}º": item[f"{i + 1}º"]} for i, item in enumerate(datos_hijos)
-    ]
-
-    datos_actual = {
-        "Independencia": datos_independencia,
-        "Hijos": datos_hijos_dict
-    }
-
-    st.session_state.data_history.append(datos_actual)
-
-    st.success("Datos enviados correctamente.")
 
 
 if st.button("Quiere ver los datos recopilados?"):
