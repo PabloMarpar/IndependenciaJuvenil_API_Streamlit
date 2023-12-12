@@ -50,9 +50,15 @@ try:
     boton1 = st.button("Análisis")
     if boton1:
         st.markdown('''
-        En este gráfico podemos ver que no es cosa de géneros , desde el 2008 
-         los jóvenes independientemente de su sexo han perdido poder adquisitivo, sin tener en cuenta
-         la perdida de poder adquisitivo por la inflación, pero eso afecta a todos por igual.''')
+        El gráfico muestra la evolución de la renta media anual para mujeres y hombres de 16 a 29 años en España, desde el año 2008 hasta el 2021.
+Existen una serie de factores que pueden explicar esta tendencia descendente. 
+En primer lugar, la crisis económica de 2008 tuvo un impacto significativo en el mercado laboral español, 
+lo que provocó un aumento del desempleo y una disminución de los salarios. 
+En segundo lugar, la inflación ha ido aumentando en los últimos años, lo que ha erosionado el poder adquisitivo de todos los trabajadores.
+
+En conclusión, el gráfico muestra que los jóvenes españoles, independientemente de su género, 
+han perdido poder adquisitivo en los últimos años. Esta pérdida se debe a una serie de factores, 
+entre los que se encuentran la crisis económica de 2008 y la inflación..''')
     if st.button('Ocultar' if boton1 else '', key='ocultar_button'):
         boton1 = not boton1
 
@@ -84,7 +90,9 @@ try:
     if boton2:
         st.markdown('''
         En esta segunda gráfica podemos ver como mientras baja la renta de las mujeres, 
-        la edad de su primer hijo se retrasa. Tener un hijo es un gasto y al parecer esta generación no puede permitirselo hasta los 30 y subiendo.
+        la edad de su primer hijo se retrasa.
+        La pérdida de poder adquisitivo de las mujeres hace que sea más difícil para ellas asumir el coste de tener un hijo. 
+        Por ello, las mujeres retrasan cada vez más la maternidad hasta que tengan una situación económica más estable.
         ''')
     if st.button('Ocultar' if boton2 else '', key='ocultar_button2'):
         boton2 = not boton2
