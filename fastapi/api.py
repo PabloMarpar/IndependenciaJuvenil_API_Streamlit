@@ -82,7 +82,6 @@ async def limpiar_datos(datos: dict):
             df_hijos[f"{i + 1}º"] = [int(item.get(f"{i + 1}º", 0))]
 
 
-
         return {"Datos enviados correctamente"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error en la limpieza de datos: {str(e)}")
