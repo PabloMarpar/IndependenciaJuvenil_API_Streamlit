@@ -2,7 +2,6 @@ FROM python:3.11-slim
 
 RUN mkdir /streamlit
 
-COPY config.toml /streamlit/config.toml
 
 COPY requirements.txt /streamlit
 
