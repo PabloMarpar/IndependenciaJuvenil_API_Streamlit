@@ -94,11 +94,21 @@ except requests.exceptions.RequestException as e:
 
 mostrar= st.button("Análisis Gráficas")
 if mostrar:
-    st.markdown( 'Con estos graficos podemos ver como la renta de los jovenes ha caido en picado en los últimos años,'
-                  'los precios de las viviendas estan volviendo al punto de la búrbuja inmoviliaria, es verdad que el paro no esta en su peor momento' 
-                  ' pero aún así la situación no es ideal. '
-                  'Por esto que he comentado vemos que la edad de emancipación no para de subir en los últimos años y tambien relacionado con '
-                  'esto nos fijamos en que se tienen los hijos cada vez más tarde por las dificultades económicas. ')
+    st.markdown( '''
+    Los gráficos presentados muestran una tendencia preocupante en la situación económica de los jóvenes en España. 
+ Este descenso se debe a varios factores, entre los que se encuentran la pérdida de poder adquisitivo ,
+ el aumento del paro juvenil y la precariedad laboral.
+ 
+ Por otro lado, los precios de la vivienda han vuelto a los niveles de la burbuja inmobiliaria, 
+ lo que dificulta aún más el acceso a la vivienda por parte de los jóvenes
+ 
+El retraso de la emancipación también tiene un impacto en la natalidad. Los jóvenes que se emancipan más tarde suelen 
+tener hijos más tarde, lo que contribuye a la disminución de la natalidad en España.
+
+En conclusión, la situación económica de los jóvenes en España es preocupante. El descenso de la renta, 
+el aumento del paro y la subida de los precios de la vivienda dificultan el acceso a la vivienda y la emancipación de los jóvenes, 
+lo que tiene un impacto negativo en la natalidad.
+    ''')
 
 if st.button('Ocultar' if mostrar else    '', key='ocultar_button'):
     mostrar_documentacion = not mostrar
