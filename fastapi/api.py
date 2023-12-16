@@ -47,7 +47,6 @@ def load_and_clean_data(rent_path, mat_path, em_path, viv_path,par_path):
 
 renta, maternidad, emancipacion, vivienda, paro = load_and_clean_data(rent_path, mat_path, em_path, viv_path,par_path)
 
-# Endpoint para obtener datos limpios
 @app.get("/datos_limpios")
 def get_datos_limpios():
     try:
@@ -68,22 +67,21 @@ def get_datos_limpios():
 @app.post("/datos_limpios")
 async def limpiar_datos(datos: dict):
     try:
-        # Datos de independencia
+        ### Datos de independencia
         datos_independencia = datos.get("Independencia", {})
         df_independencia = pd.DataFrame({
             "Año": [int(datos_independencia.get("España", 0))],
             "Edad al independizarse": [int(datos_independencia.get("Edad al independizarse", 0))]
         })
 
-        # Datos de hijos
+        ### Datos de hijos
         datos_hijos = datos.get("Hijos", [])
         df_hijos = pd.DataFrame()
         for i, item in enumerate(datos_hijos):
             df_hijos[f"Año_{i + 1}º"] = [int(item.get(f"Año_{i + 1}º", 0))]
             df_hijos[f"{i + 1}º"] = [int(item.get(f"{i + 1}º", 0))]
 
-        # Realiza la limpieza o manipulación de los DataFrames según tus necesidades
 
-        return {"mensaje": "Datos enviados correctamente"}
+        return {"Datos enviados correctamente"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error en la limpieza de datos: {str(e)}")
